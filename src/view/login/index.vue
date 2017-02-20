@@ -14,7 +14,6 @@
 
 <script>
 import { mapActions } from 'vuex'
-import { USER_SIGNIN } from '../../vuex/user'
 import { XInput,Group,Cell,XButton} from 'vux'
 export default {
   components:{
@@ -32,10 +31,14 @@ export default {
     }
   },
   methods:{
-    ...mapActions([USER_SIGNIN]),
+    ...mapActions([
+      'signIn'
+    ]),
     submit(){
       if(!this.loginForm.userName || !this.loginForm.userPassword) return
-      this.USER_SIGNIN(this.loginForm)
+      this.signIn(this.loginForm)
+      console.log(this.loginForm)
+      console.log(this.$store.state.userObject)
       this.$router.replace({ path: '/membercenter'})
     }
   }
